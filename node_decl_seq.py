@@ -1,0 +1,2 @@
+class DeclSeqNode:
+    pass
