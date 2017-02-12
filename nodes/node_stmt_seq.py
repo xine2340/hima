@@ -3,7 +3,7 @@ from tokenizer import Tokenizer
 
 
 class CONST:
-    STMT_IDF = ['if', 'loop', 'read', 'write']
+    STMT_IDF = ['if', 'while', 'read', 'write']
 
 
 class StmtSeqNode:

@@ -1,5 +1,6 @@
 import utils
 from nodes.node_id_list import IdListNode
+from tokenizer import Tokenizer
 
 
 class CONST:
@@ -17,7 +18,7 @@ class OutNode:
     def __init__(self):
         self.id_list = IdListNode()
 
-    def parse_out(self, t):
+    def parse_out(self, t: Tokenizer):
         """
         parse the output node
         :param t: tokenizer

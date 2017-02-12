@@ -9,7 +9,7 @@ from tokenizer import Tokenizer
 
 class CONST:
     IF = 'if'
-    LOOP = 'loop'
+    LOOP = 'while'
     IN = 'read'
     OUT = 'write'
     ALT_ASGN = 1

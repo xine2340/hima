@@ -1,5 +1,6 @@
 import utils
 from nodes.node_term import TermNode
+from tokenizer import Tokenizer
 
 
 class CONST:
@@ -22,7 +23,7 @@ class ExpNode:
         self.exp: ExpNode = False
         self.alt = CONST.ALT_T
 
-    def parse_exp(self, t):
+    def parse_exp(self, t: Tokenizer):
         """
         parse the expression node
         :param t: tokenizer

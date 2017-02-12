@@ -43,9 +43,6 @@ class TermNode:
             self.fac.print_fac()
             utils.print_i(' {} '.format(CONST.TIMES), 0, False)
             self.term.print_term()
-        else:
-            # todo - error
-            pass
 
     def eval_term(self):
         """

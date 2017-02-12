@@ -1,5 +1,6 @@
 import nodes.node_decl
 from nodes.node_decl import DeclNode
+from tokenizer import Tokenizer
 
 
 class DeclSeqNode:
@@ -11,7 +12,7 @@ class DeclSeqNode:
     def __init__(self):
         self.decl_seq = []
 
-    def parse_decl_seq(self, t):
+    def parse_decl_seq(self, t: Tokenizer):
         """
         parse the declaration sequence node
         :param t: tokenizer

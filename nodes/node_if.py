@@ -1,6 +1,7 @@
 import utils
+import nodes.node_stmt_seq
+from tokenizer import Tokenizer
 from nodes.node_cond import CondNode
-from nodes.node_stmt_seq import StmtSeqNode
 
 
 class CONST:
@@ -23,11 +24,11 @@ class IfNode:
 
     def __init__(self):
         self.cond = CondNode()
-        self.then_seq = StmtSeqNode()
-        self.else_seq: StmtSeqNode = False
+        self.then_seq = nodes.node_stmt_seq.StmtSeqNode()
+        self.else_seq = False
         self.alt = CONST.ALT_IF
 
-    def parse_if(self, t):
+    def parse_if(self, t: Tokenizer):
         """
         parse the if node and sub-nodes
         :param t: tokenizer
@@ -39,7 +40,7 @@ class IfNode:
         if t.current_token == CONST.ELSE:
             t.next_token()
             self.alt = CONST.ALT_IF_ELSE
-            self.else_seq = StmtSeqNode()
+            self.else_seq = nodes.node_stmt_seq.StmtSeqNode()
             self.else_seq.parse_stmt_seq(t)
         utils.check_token(t, CONST.END, CONST.NODE_NAME)
         utils.check_token(t, CONST.SC, CONST.NODE_NAME)
@@ -58,9 +59,9 @@ class IfNode:
         print if statement
         :param i: base indentation
         """
-        utils.print_i(CONST.IF, i)
+        utils.print_i(CONST.IF + ' ', i, False)
         self.cond.print_cond()
-        print(CONST.THEN)
+        print(' ' + CONST.THEN)
         self.then_seq.print_stmt_seq(i + 1)
         if self.alt == CONST.ALT_IF_ELSE:
             utils.print_i(CONST.ELSE, i)

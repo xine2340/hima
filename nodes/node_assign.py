@@ -1,6 +1,7 @@
 import utils
 from nodes.node_exp import ExpNode
 from nodes.node_id import IdNode
+from tokenizer import Tokenizer
 
 
 class CONST:
@@ -19,7 +20,7 @@ class AssignNode:
         self.id_node = None
         self.exp = ExpNode()
 
-    def parse_assign(self, t):
+    def parse_assign(self, t: Tokenizer):
         """
         parse the assign node
         :param t: tokenizer

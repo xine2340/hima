@@ -1,5 +1,6 @@
 import utils
 from nodes.node_fac import FacNode
+from tokenizer import Tokenizer
 
 
 class CONST:
@@ -24,7 +25,7 @@ class CompNode:
         self.fac_2 = FacNode()
         self.alt = False
 
-    def parse_comp(self, t):
+    def parse_comp(self, t: Tokenizer):
         """
         parse the comparision node
         :param t: tokenizer
@@ -36,8 +37,10 @@ class CompNode:
             t.next_token()
         else:
             # todo - error
-            pass
+            # t.print_error()
+            t.safe_exit()
         self.fac_2.parse_fac(t)
+        utils.check_token(t, ')', CONST.NODE_NAME)
 
     def print_comp(self):
         """
@@ -47,6 +50,7 @@ class CompNode:
         self.fac_1.print_fac()
         utils.print_i(' {} '.format(self.alt), 0, False)
         self.fac_2.print_fac()
+        utils.print_i(')', 0, False)
 
     def eval_comp(self):
         """

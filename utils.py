@@ -1,6 +1,3 @@
-from enum import Enum
-
-
 def check_token(t, expected, node_name):
     """
     check if current token is expected
@@ -59,7 +56,3 @@ class ERR_WARN_STR:
     T_BAD_EOF = 'Error: a token starts with "#" but is not EOF.'
     T_ID_LOW = 'Error: mixing upper and lower cases.'
     T_ID_NUM_LET = 'Error: bad identifier- letter after digits.'
-
-
-class CNST(Enum):
-    pass

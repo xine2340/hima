@@ -1,4 +1,6 @@
 import utils
+import nodes.node_exp
+from tokenizer import Tokenizer
 from nodes.node_id import IdNode
 
 
@@ -18,10 +20,10 @@ class FacNode:
     def __init__(self):
         self.int_val: int = None
         self.id_node: IdNode = None
-        self.exp: ExpNode = None
+        self.exp: nodes.node_exp.ExpNode = None
         self.alt: int = None
 
-    def parse_fac(self, t):
+    def parse_fac(self, t: Tokenizer):
         """
         parse the factor node
         :param t: tokenizer
@@ -36,7 +38,7 @@ class FacNode:
             t.next_token()
         elif t.current_token == '(':
             t.next_token()
-            self.exp = ExpNode()
+            self.exp = nodes.node_exp.ExpNode()
             self.exp.parse_exp(t)
             utils.check_token(t, ')', CONST.NODE_NAME)
         else:

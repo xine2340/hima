@@ -1,5 +1,6 @@
 import utils
 from nodes.node_comp import CompNode
+from tokenizer import Tokenizer
 
 
 class CONST:
@@ -27,31 +28,34 @@ class CondNode:
         self.cond_1: CondNode = None
         self.cond_2: CondNode = None
 
-    def parse_cond(self, t):
+    def parse_cond(self, t: Tokenizer):
         """
         parse the condition node
         :param t: tokenizer
         """
-        if t.current_node == CONST.NOT:
+        if t.current_token == CONST.NOT:
             t.next_token()
             self.alt = CONST.ALT_NOT
             self.cond_1.parse_cond(t)
-        elif t.current_node == '[':
+        elif t.current_token == '[':
             t.next_token()
             self.cond_1.parse_cond(t)
-            if t.current_node == CONST.AND:
+            if t.current_token == CONST.AND:
                 t.next_token()
                 self.alt = CONST.ALT_AND
-            elif t.current_node == CONST.OR:
+            elif t.current_token == CONST.OR:
                 t.next_token()
                 self.alt = CONST.ALT_OR
             else:
                 # todo - error
-                pass
+                # t.print_error()
+                t.safe_exit()
+
             self.cond_2.parse_cond(t)
             utils.check_token(t, ']', CONST.NODE_NAME)
         else:
             self.alt = CONST.ALT_CMP
+            self.comp = CompNode()
             self.comp.parse_comp(t)
 
     def print_cond(self):
@@ -73,7 +77,7 @@ class CondNode:
             utils.print_i(' {} '.format(CONST.OR), 0, False)
             self.cond_2.print_cond()
             utils.print_i(']', 0, False)
-        elif self == CONST.ALT_CMP:
+        elif self.alt == CONST.ALT_CMP:
             self.comp.print_comp()
 
     def eval_cond(self):
@@ -87,5 +91,5 @@ class CondNode:
             return self.cond_1.eval_cond() and self.cond_2.eval_cond()
         elif self.alt == CONST.ALT_OR:
             return self.cond_1.eval_cond() or self.cond_2.eval_cond()
-        elif self == CONST.ALT_CMP:
+        elif self.alt == CONST.ALT_CMP:
             return self.comp.eval_comp()

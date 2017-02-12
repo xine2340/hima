@@ -108,8 +108,11 @@ class Tokenizer:
             2. bad identifier
         :return: a reserved word in @{reserved}
         """
+        # todo - end;
         for res in self.RESERVED:
-            if self.line_tokens[0] == res:
+            if self.line_tokens[0].find(res) == 0:
+                if len(self.line_tokens[0]) > len(res) and self.line_tokens[0][len(res)].isalnum():
+                        continue
                 self.current_token = res
                 self.line_tokens[0] = self.line_tokens[0][len(res):]
                 self.token_type = self.T_RESV

@@ -1,6 +1,7 @@
 import utils
 from nodes.node_decl_seq import DeclSeqNode
 from nodes.node_stmt_seq import StmtSeqNode
+from tokenizer import Tokenizer
 
 
 class CONST:
@@ -20,7 +21,7 @@ class ProgNode:
         self.decl_seq = DeclSeqNode()
         self.stmt_seq = StmtSeqNode()
 
-    def parse_program(self, t):
+    def parse_program(self, t: Tokenizer):
         """
         parse program and sub-nodes
         :param t: tokenizer

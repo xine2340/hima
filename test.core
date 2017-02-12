@@ -1,10 +1,7 @@
 program
-  int X, Y;
-  int Z;
-  begin
-    X = 1;
-    if (1==1) then
-        X = 2
-    end
-  end
+int X, Y;
+int Z;
+begin
+Z = Y*(X+Y);
+end
 ###END_OF_FILE###
