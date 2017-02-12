@@ -1,16 +1,17 @@
 from enum import Enum
 
 
-def check_token(t, expected):
+def check_token(t, expected, node_name):
     """
     check if current token is expected
     move to next token or print error
     :param t: tokenizer
     :param expected:
+    :param node_name:
     """
     token = t.current_token
     if token != expected:
-        t.print_error(ERR_WARN_STR.P_MISSING_RESV.format(expected))
+        t.print_error(ERR_WARN_STR.P_MISSING_RESV.format(expected, node_name))
         t.safe_exit()
     if t.token_type != t.T_EOF:
         t.next_token()
@@ -42,9 +43,11 @@ def print_i(str, indent, new_line=True):
 
 
 class ERR_WARN_STR:
-    P_MISSING_RESV = 'Error: missing reserved word "{}".'
+    P_MISSING_RESV = 'Error: missing reserved word "{}" in {} node/statement.'
     P_INVLD_STMT = 'Error: invalid statement.'
+    P_INVLD_FAC = 'Error: "{}" is not a valid factor. '
     P_ID_NOT_FND = 'Error: an identifier expected but not found.'
+    P_ID_NOT_DCL = 'Error: identifier "{}" is not declared.'
     T_REACH_EOF = 'Reached end of file.'
     T_FILE_NOT_FOUND = 'Error: File not found'
     T_ERROR_LINE = 'Error info:\n\tLine number: {}\n\tNear "{}".'

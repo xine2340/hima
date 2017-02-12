@@ -1,2 +1,6 @@
-class In_node:
+class InNode:
+    """
+    the input node
+    <in> ::= read <id-list>;
+    """
     pass

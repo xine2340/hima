@@ -4,7 +4,6 @@ from utils import ERR_WARN_STR
 class Tokenizer:
     """
     The tokenizer class for CORE language
-    author: Xin Huang
     date: Jan 24, 2017
     """
 
@@ -52,7 +51,10 @@ class Tokenizer:
         :param error_str: the error string
         """
         print(error_str)
-        print(ERR_WARN_STR.T_ERROR_LINE.format(self.error_line_num, self.line_tokens[0]))
+        trace_str = self.current_token
+        if len(self.line_tokens) >= 1:
+            trace_str += ' ' + self.line_tokens[0]
+        print(ERR_WARN_STR.T_ERROR_LINE.format(self.error_line_num, trace_str))
 
     def next_token(self):
         """
