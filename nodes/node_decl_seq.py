@@ -1,5 +1,5 @@
 import nodes.node_decl
-from  nodes.node_decl import DeclNode
+from nodes.node_decl import DeclNode
 
 
 class DeclSeqNode:
@@ -28,4 +28,3 @@ class DeclSeqNode:
         """
         for decl in self.decl_seq:
             decl.print_decl(i)
-        

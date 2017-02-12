@@ -1,5 +1,5 @@
 import utils
-from Parser_Nodes.node_comp import CompNode
+from nodes.node_comp import CompNode
 
 
 class CONST:

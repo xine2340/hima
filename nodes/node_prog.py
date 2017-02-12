@@ -1,6 +1,6 @@
 import utils
-from Parser_Nodes.node_stmt_seq import StmtSeqNode
-from node_decl_seq import DeclSeqNode
+from nodes.node_decl_seq import DeclSeqNode
+from nodes.node_stmt_seq import StmtSeqNode
 
 
 class CONST:
@@ -26,7 +26,7 @@ class ProgNode:
         :param t: tokenizer
         """
         utils.check_token(t, CONST.PROG, CONST.NODE_NAME)
-        self.decl_seq.parse_decl_seq_node(t)
+        self.decl_seq.parse_decl_seq(t)
         utils.check_token(t, CONST.BEGIN, CONST.NODE_NAME)
         self.stmt_seq.parse_stmt_seq(t)
         utils.check_token(t, CONST.END, CONST.NODE_NAME)
@@ -46,5 +46,5 @@ class ProgNode:
         """
         execute the program
         """
-        self.decl_seq.exec_decl_seq()
+        # self.decl_seq.exec_decl_seq()
         self.stmt_seq.exec_stmt_seq()

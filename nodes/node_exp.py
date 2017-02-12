@@ -1,5 +1,5 @@
 import utils
-from node_term import TermNode
+from nodes.node_term import TermNode
 
 
 class CONST:
@@ -28,11 +28,13 @@ class ExpNode:
         :param t: tokenizer
         """
         self.term.parse_term(t)
-        if t.current_node == CONST.PLUS:
+        if t.current_token == CONST.PLUS:
+            t.next_token()
             self.alt = CONST.ALT_TPE
             self.exp = ExpNode()
             self.exp.parse_exp(t)
-        elif t.current_node == CONST.MINUS:
+        elif t.current_token == CONST.MINUS:
+            t.next_token()
             self.alt = CONST.ALT_TME
             self.exp = ExpNode()
             self.exp.parse_exp(t)

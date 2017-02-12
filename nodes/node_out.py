@@ -1,5 +1,5 @@
 import utils
-from Parser_Nodes.node_id_list import IdListNode
+from nodes.node_id_list import IdListNode
 
 
 class CONST:
@@ -39,8 +39,5 @@ class OutNode:
         """
         execute the output statement
         """
-        for id_node in self.id_list:
-            if not id_node.inited:
-                # todo - error
-                pass
-            print(id_node.name + ' = ' + id_node.value)
+        for id_node in self.id_list.id_list:
+            print(id_node.name + ' is ' + str(id_node.value))

@@ -1,9 +1,9 @@
 import utils
-from Parser_Nodes.node_assign import AssignNode
-from Parser_Nodes.node_if import If_node
-from Parser_Nodes.node_out import OutNode
 from node_in import InNode
-from node_loop import LoopNode
+from nodes.node_assign import AssignNode
+from nodes.node_if import IfNode
+from nodes.node_loop import LoopNode
+from nodes.node_out import OutNode
 from tokenizer import Tokenizer
 
 
@@ -26,8 +26,8 @@ class StmtNode:
     """
 
     def __init__(self):
-        self.sub_node = False
-        self.alt: int = False
+        self.sub_node = None
+        self.alt: int = None
 
     def parse_stmt(self, t: Tokenizer):
         """
@@ -40,7 +40,7 @@ class StmtNode:
             self.sub_node.parse_assign(t)
         elif t.current_token == CONST.IF:
             self.alt = CONST.ALT_IF
-            self.sub_node = If_node()
+            self.sub_node = IfNode()
             self.sub_node.parse_if(t)
         elif t.current_token == CONST.LOOP:
             self.alt = CONST.ALT_LOOP

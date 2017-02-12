@@ -1,5 +1,5 @@
 import utils
-from Parser_Nodes.node_fac import FacNode
+from nodes.node_fac import FacNode
 
 
 class CONST:
@@ -16,7 +16,7 @@ class TermNode:
     """
 
     def __init__(self):
-        self.fac: FacNode = None
+        self.fac = FacNode()
         self.term: TermNode = None
         self.alt: int = None
 
@@ -30,6 +30,7 @@ class TermNode:
         if t.current_token == CONST.TIMES:
             self.alt = CONST.ALT_FAC_TERM
             t.next_token()
+            self.term = TermNode()
             self.term.parse_term(t)
 
     def print_term(self):
@@ -52,3 +53,9 @@ class TermNode:
         :return: the value of the term
         """
         if self.alt == CONST.ALT_FAC:
+            return self.fac.eval_fac()
+        elif self.alt == CONST.ALT_FAC_TERM:
+            return self.fac.eval_fac() * self.term.eval_term()
+        else:
+            # todo - error
+            pass

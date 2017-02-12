@@ -4,14 +4,13 @@ from tokenizer import Tokenizer
 
 class IdNode:
     """
-    the identifiers node
-    containing a static symbol table
+    the identifiers node, initialized to 0
+    the class contains a static symbol table
     """
     idTable = dict()
 
     def __init__(self, name):
-        self.value = -1
-        self.inited = False
+        self.value = 0
         self.name = name
 
     @staticmethod
@@ -34,5 +33,4 @@ class IdNode:
         if name in IdNode.idTable:
             return IdNode.idTable[name]
         else:
-            # todo - error handling
-            pass
+            return None

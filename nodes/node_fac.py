@@ -1,6 +1,5 @@
 import utils
-from Parser_Nodes.node_exp import ExpNode
-from Parser_Nodes.node_id import IdNode
+from nodes.node_id import IdNode
 
 
 class CONST:
@@ -17,10 +16,10 @@ class FacNode:
     """
 
     def __init__(self):
-        self.int_val: int = False
-        self.id_node: IdNode = False
-        self.exp: ExpNode = False
-        self.alt: int = False
+        self.int_val: int = None
+        self.id_node: IdNode = None
+        self.exp: ExpNode = None
+        self.alt: int = None
 
     def parse_fac(self, t):
         """
@@ -30,14 +29,19 @@ class FacNode:
         if t.token_type == t.T_INT:
             self.alt = CONST.ALT_INT
             self.int_val = int(t.current_token)
+            t.next_token()
         elif t.token_type == t.T_ID:
             self.alt = CONST.ALT_ID
             self.id_node = IdNode.find_id(t.current_token)
+            t.next_token()
         elif t.current_token == '(':
             t.next_token()
             self.exp = ExpNode()
             self.exp.parse_exp(t)
             utils.check_token(t, ')', CONST.NODE_NAME)
+        else:
+            t.print_error(utils.ERR_WARN_STR.P_INVLD_FAC.format(t.current_token))
+            t.safe_exit()
 
     def print_fac(self):
         """

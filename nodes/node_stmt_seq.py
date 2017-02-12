@@ -1,4 +1,4 @@
-from Parser_Nodes.node_stmt import StmtNode
+from nodes.node_stmt import StmtNode
 from tokenizer import Tokenizer
 
 
@@ -16,7 +16,7 @@ class StmtSeqNode:
         """
         the constructor, creating statement sequence node instance
         """
-        self.stmt_list = []
+        self.stmt_seq = []
 
     def parse_stmt_seq(self, t: Tokenizer):
         """
@@ -24,22 +24,22 @@ class StmtSeqNode:
         :param t: tokenizer
         """
         # TODO - handle empty stmt seq
-        while t.token_type == t.T_ID or t.token_type in CONST.STMT_IDF:
+        while t.token_type == t.T_ID or t.current_token in CONST.STMT_IDF:
             stmt = StmtNode()
             stmt.parse_stmt(t)
-            self.stmt_list.append(stmt)
+            self.stmt_seq.append(stmt)
 
     def print_stmt_seq(self, i):
         """
         print the statement sequence
         :param i: indentation
         """
-        for stmt in self.stmt_list:
+        for stmt in self.stmt_seq:
             stmt.print_stmt(i)
 
     def exec_stmt_seq(self):
         """
         execute the statement sequence
         """
-        for stmt in self.stmt_list:
+        for stmt in self.stmt_seq:
             stmt.exec_stmt()

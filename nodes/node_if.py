@@ -1,6 +1,6 @@
 import utils
-from Parser_Nodes.node_cond import CondNode
-from Parser_Nodes.node_stmt_seq import StmtSeqNode
+from nodes.node_cond import CondNode
+from nodes.node_stmt_seq import StmtSeqNode
 
 
 class CONST:
@@ -14,7 +14,7 @@ class CONST:
     ALT_IF_ELSE = 2
 
 
-class If_node:
+class IfNode:
     """
     the if node
     <if> ::= if <cond> then <stmt-seq> end;

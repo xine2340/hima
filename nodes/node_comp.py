@@ -1,5 +1,5 @@
 import utils
-from Parser_Nodes.node_fac import FacNode
+from nodes.node_fac import FacNode
 
 
 class CONST:

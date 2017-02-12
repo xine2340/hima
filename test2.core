@@ -1,2 +1,11 @@
-A,S,D,DDD,D234
+int A,S,D,DDD,D234;
+int B;
+B = 3;
+A = 1 + 2;
+B = A;
+D = A + B;
+write B;
+write D;
+DDD = D + 1;
+write DDD;
 ###END_OF_FILE###

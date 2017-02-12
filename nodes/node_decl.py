@@ -1,10 +1,11 @@
 import utils
-from Parser_Nodes.node_id_list import IdListNode
+from nodes.node_id_list import IdListNode
 
 
 class CONST:
     NODE_NAME = 'declaration'
-    INT = 'int'
+    TYPES = ['int']
+    INT = TYPES[0]
     SC = ';'
 
 
@@ -22,8 +23,12 @@ class DeclNode:
         parse the declaration node
         :param t: tokenizer
         """
-        utils.check_token(t, CONST.INT, CONST.NODE_NAME)
-        self.id_list.parse_id_list(t)
+        if t.current_token in CONST.TYPES:
+            t.next_token()
+        else:
+            # todo - error
+            pass
+        self.id_list.parse_id_list(t, True)
         utils.check_token(t, CONST.SC, CONST.NODE_NAME)
 
     def print_decl(self, i):

@@ -1,7 +1,10 @@
 program
-  int X;
+  int X, Y;
+  int Z;
   begin
-    X = 25;
-    write X;
+    X = 1;
+    if (1==1) then
+        X = 2
+    end
   end
 ###END_OF_FILE###
