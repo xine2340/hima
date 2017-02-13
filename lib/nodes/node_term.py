@@ -1,5 +1,5 @@
-import utils
-from nodes.node_fac import FacNode
+from lib import utils
+from lib.nodes.node_fac import FacNode
 
 
 class CONST:
@@ -53,6 +53,3 @@ class TermNode:
             return self.fac.eval_fac()
         elif self.alt == CONST.ALT_FAC_TERM:
             return self.fac.eval_fac() * self.term.eval_term()
-        else:
-            # todo - error
-            pass

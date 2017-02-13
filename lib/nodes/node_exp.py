@@ -1,6 +1,6 @@
-import utils
-from nodes.node_term import TermNode
-from tokenizer import Tokenizer
+from lib import utils
+from lib.nodes.node_term import TermNode
+from lib.tokenizer import Tokenizer
 
 
 class CONST:

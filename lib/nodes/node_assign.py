@@ -1,7 +1,8 @@
-import utils
-from nodes.node_exp import ExpNode
-from nodes.node_id import IdNode
-from tokenizer import Tokenizer
+from lib.nodes.node_id import IdNode
+
+from lib import utils
+from lib.nodes.node_exp import ExpNode
+from lib.tokenizer import Tokenizer
 
 
 class CONST:

@@ -87,16 +87,16 @@ All test cases passed; no outstanding bug found.
 
 0. normal core program file
 1. empty file
-2. empty file/multiple empty lines with EOF token
-3. program without EOF
+2. multiple empty lines
+3. program with multiple empty lines
 4. 123Letter
 5. ID123LETTER
 6. IDentifier
 7. prograM
 8. program1
 9. 12345678
-10. 1234567890
+10. 123456789
 11. ABCDEFGH
 12. ABCDEFGHI
-13. === >== !===
-14. (a=b;) (a= b;) (a =b;)
+13. === =>== !=>== ==== !!==<=
+14. [(A =B) (B= 1)] (A = AA; B; BB=BB)();

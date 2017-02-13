@@ -1,5 +1,5 @@
-import utils
-from tokenizer import Tokenizer
+from lib import utils
+from lib.tokenizer import Tokenizer
 
 
 class IdNode:

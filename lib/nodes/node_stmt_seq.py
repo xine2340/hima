@@ -1,5 +1,5 @@
-from nodes.node_stmt import StmtNode
-from tokenizer import Tokenizer
+from lib.nodes.node_stmt import StmtNode
+from lib.tokenizer import Tokenizer
 
 
 class CONST:
@@ -23,7 +23,7 @@ class StmtSeqNode:
         parse the statement sequence
         :param t: tokenizer
         """
-        # TODO - handle empty stmt seq
+
         while t.token_type == t.T_ID or t.current_token in CONST.STMT_IDF:
             stmt = StmtNode()
             stmt.parse_stmt(t)

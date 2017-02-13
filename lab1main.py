@@ -1,5 +1,6 @@
-from tokenizer import Tokenizer
 import sys
+
+from lib.tokenizer import Tokenizer
 
 """
 Lab 1 main function
@@ -44,8 +45,16 @@ token_num = {
 }
 INT_num = 31
 ID_num = 32
+
+if len(sys.argv) == 1:
+    print("Please input file name.")
+    exit()
+
 t = Tokenizer(sys.argv[1])
+
 while t.current_token != t.EOF:
+    if len(sys.argv) == 3 and sys.argv[2] == 'debug':
+        print(t.current_token + ' ', end='')
     if t.current_token in token_num:
         print(token_num[t.current_token])
     elif t.current_token[0].isdigit():
@@ -53,4 +62,6 @@ while t.current_token != t.EOF:
     else:
         print(ID_num)
     t.next_token()
+if len(sys.argv) == 3 and sys.argv[2] == 'debug':
+    print(t.current_token + ' ', end='')
 print(token_num[t.current_token])

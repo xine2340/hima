@@ -4,3 +4,4 @@ class InNode:
     <in> ::= read <id-list>;
     """
     pass
+# todo - implementation

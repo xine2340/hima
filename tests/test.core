@@ -1,0 +1,17 @@
+program
+int X, Y;
+int Z;
+begin
+X=8;
+Y=3;
+if (X>Y) then
+write X;
+else
+write Y;
+end;
+Z=2;
+while (Z<=X) loop
+Z = Z*2;
+end;
+write Z;
+end

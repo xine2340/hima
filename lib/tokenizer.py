@@ -1,4 +1,4 @@
-from utils import ERR_WARN_STR
+from lib.utils import ERR_WARN_STR
 
 
 class Tokenizer:
@@ -10,8 +10,8 @@ class Tokenizer:
     RESERVED = ['program', 'begin', 'end', 'int', 'if', 'then',
                 'else', 'while', 'loop', 'read', 'read', 'write',
                 'and', 'or']
-    SYMBOLS = [';', ',', '!', '[', ']', '(', ')', '+', '-', '*',
-               '!=', '==', '=', '>=', '<=', '>', '<']
+    SYMBOLS = [';', ',', '!=', '[', ']', '(', ')', '+', '-', '*',
+               '!', '==', '<=', '>=', '=', '>', '<']
     EOF = '###END_OF_FILE###'
     LEN_LIMIT = 8
     T_RESV = 1
@@ -62,14 +62,13 @@ class Tokenizer:
         read next line if current line contains no token,
         terminate and close file when EOF
         :handles errors:
-            1. no EOF token
-            2. invalid char
+            1. invalid char
         """
 
         # skip if EOF
-        if self.current_token == self.EOF:
+        if self.token_type == self.T_EOF:
             print(ERR_WARN_STR.T_REACH_EOF)
-            return False
+            return None
 
         while len(self.line_tokens) == 0 or len(self.line_tokens[0]) == 0:
             # get next line if current line is done
@@ -77,8 +76,8 @@ class Tokenizer:
                 self.current_line = self.source.readline()
                 self.error_line_num += 1
                 if not self.current_line:
-                    print(ERR_WARN_STR.T_MISSING_EOF)
-                    self.safe_exit()
+                    self.next_eof()
+                    return None
                 self.line_tokens = self.current_line.split()
 
             # pop if head is empty
@@ -86,9 +85,7 @@ class Tokenizer:
                 self.line_tokens.pop(0)
 
         # get next token
-        if self.line_tokens[0][0] == '#':
-            self.next_eof()
-        elif self.line_tokens[0][0].islower():
+        if self.line_tokens[0][0].islower():
             self.next_reserved()
         elif self.line_tokens[0][0].isupper():
             self.next_id()
@@ -108,11 +105,10 @@ class Tokenizer:
             2. bad identifier
         :return: a reserved word in @{reserved}
         """
-        # todo - end;
         for res in self.RESERVED:
             if self.line_tokens[0].find(res) == 0:
                 if len(self.line_tokens[0]) > len(res) and self.line_tokens[0][len(res)].isalnum():
-                        continue
+                    continue
                 self.current_token = res
                 self.line_tokens[0] = self.line_tokens[0][len(res):]
                 self.token_type = self.T_RESV
@@ -171,14 +167,9 @@ class Tokenizer:
         get EOF token
         :return: EOF token
         """
-        if self.line_tokens[0] == self.EOF:
-            self.current_token = self.EOF
-            self.line_tokens.pop(0)
-            self.source.close()
-            self.token_type = self.T_EOF
-        else:
-            self.print_error(ERR_WARN_STR.T_BAD_EOF)
-            self.safe_exit()
+        self.current_token = self.EOF
+        self.source.close()
+        self.token_type = self.T_EOF
 
     def next_id(self):
         """

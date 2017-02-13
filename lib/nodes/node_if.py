@@ -1,7 +1,7 @@
-import utils
-import nodes.node_stmt_seq
-from tokenizer import Tokenizer
-from nodes.node_cond import CondNode
+from lib import utils
+from lib.nodes.node_cond import CondNode
+from lib.tokenizer import Tokenizer
+import lib.nodes.node_stmt_seq
 
 
 class CONST:
@@ -24,7 +24,7 @@ class IfNode:
 
     def __init__(self):
         self.cond = CondNode()
-        self.then_seq = nodes.node_stmt_seq.StmtSeqNode()
+        self.then_seq = lib.nodes.node_stmt_seq.StmtSeqNode()
         self.else_seq = None
         self.alt = CONST.ALT_IF
 
@@ -40,7 +40,7 @@ class IfNode:
         if t.current_token == CONST.ELSE:
             t.next_token()
             self.alt = CONST.ALT_IF_ELSE
-            self.else_seq = nodes.node_stmt_seq.StmtSeqNode()
+            self.else_seq = lib.nodes.node_stmt_seq.StmtSeqNode()
             self.else_seq.parse_stmt_seq(t)
         utils.check_token(t, CONST.END, CONST.NODE_NAME)
         utils.check_token(t, CONST.SC, CONST.NODE_NAME)

@@ -1,6 +1,6 @@
-import utils
-from nodes.node_fac import FacNode
-from tokenizer import Tokenizer
+from lib import utils
+from lib.nodes.node_fac import FacNode
+from lib.tokenizer import Tokenizer
 
 
 class CONST:
@@ -36,8 +36,7 @@ class CompNode:
             self.alt = t.current_token
             t.next_token()
         else:
-            # todo - error
-            # t.print_error()
+            t.print_error(utils.ERR_WARN_STR.P_MISSING_LOGIC_OP.format(CONST.NODE_NAME))
             t.safe_exit()
         self.fac_2.parse_fac(t)
         utils.check_token(t, ')', CONST.NODE_NAME)

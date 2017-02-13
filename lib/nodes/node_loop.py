@@ -1,7 +1,7 @@
-import utils
-import nodes.node_stmt_seq
-from nodes.node_cond import CondNode
-from tokenizer import Tokenizer
+from lib import utils
+from lib.nodes.node_cond import CondNode
+from lib.tokenizer import Tokenizer
+import lib.nodes.node_stmt_seq
 
 
 class CONST:
@@ -20,7 +20,7 @@ class LoopNode:
 
     def __init__(self):
         self.cond = CondNode()
-        self.stmt_seq = nodes.node_stmt_seq.StmtSeqNode()
+        self.stmt_seq = lib.nodes.node_stmt_seq.StmtSeqNode()
 
     def parse_loop(self, t: Tokenizer):
         """

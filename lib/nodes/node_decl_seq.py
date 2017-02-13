@@ -1,6 +1,6 @@
-import nodes.node_decl
-from nodes.node_decl import DeclNode
-from tokenizer import Tokenizer
+import lib.nodes.node_decl
+from lib.nodes.node_decl import DeclNode
+from lib.tokenizer import Tokenizer
 
 
 class DeclSeqNode:
@@ -17,7 +17,7 @@ class DeclSeqNode:
         parse the declaration sequence node
         :param t: tokenizer
         """
-        while t.current_token in nodes.node_decl.CONST.TYPES:
+        while t.current_token in lib.nodes.node_decl.CONST.TYPES:
             decl = DeclNode()
             decl.parse_decl(t)
             self.decl_seq.append(decl)

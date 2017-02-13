@@ -1,7 +1,8 @@
-import utils
-from nodes.node_decl_seq import DeclSeqNode
-from nodes.node_stmt_seq import StmtSeqNode
-from tokenizer import Tokenizer
+from lib.nodes.node_stmt_seq import StmtSeqNode
+
+from lib import utils
+from lib.nodes.node_decl_seq import DeclSeqNode
+from lib.tokenizer import Tokenizer
 
 
 class CONST:

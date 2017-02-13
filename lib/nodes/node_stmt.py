@@ -1,10 +1,11 @@
-import utils
+from lib.nodes.node_assign import AssignNode
+from lib.nodes.node_if import IfNode
+from lib.nodes.node_out import OutNode
+
+from lib import utils
+from lib.nodes.node_loop import LoopNode
+from lib.tokenizer import Tokenizer
 from node_in import InNode
-from nodes.node_assign import AssignNode
-from nodes.node_if import IfNode
-from nodes.node_loop import LoopNode
-from nodes.node_out import OutNode
-from tokenizer import Tokenizer
 
 
 class CONST:

@@ -1,7 +1,8 @@
-import utils
-import nodes.node_exp
-from tokenizer import Tokenizer
-from nodes.node_id import IdNode
+from lib.nodes.node_id import IdNode
+
+import lib.nodes.node_exp
+from lib import utils
+from lib.tokenizer import Tokenizer
 
 
 class CONST:
@@ -38,7 +39,7 @@ class FacNode:
             t.next_token()
         elif t.current_token == '(':
             t.next_token()
-            self.exp = nodes.node_exp.ExpNode()
+            self.exp = lib.nodes.node_exp.ExpNode()
             self.exp.parse_exp(t)
             utils.check_token(t, ')', CONST.NODE_NAME)
         else:

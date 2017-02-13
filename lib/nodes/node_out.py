@@ -1,6 +1,6 @@
-import utils
-from nodes.node_id_list import IdListNode
-from tokenizer import Tokenizer
+from lib import utils
+from lib.nodes.node_id_list import IdListNode
+from lib.tokenizer import Tokenizer
 
 
 class CONST:

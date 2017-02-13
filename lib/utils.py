@@ -41,6 +41,7 @@ def print_i(str, indent, new_line=True):
 
 class ERR_WARN_STR:
     P_MISSING_RESV = 'Error: missing reserved word "{}" in {} node/statement.'
+    P_MISSING_LOGIC_OP = 'Error: missing logic operator in {} node/statement.'
     P_INVLD_STMT = 'Error: invalid statement.'
     P_INVLD_FAC = 'Error: "{}" is not a valid factor. '
     P_ID_NOT_FND = 'Error: an identifier expected but not found.'
@@ -48,7 +49,6 @@ class ERR_WARN_STR:
     T_REACH_EOF = 'Reached end of file.'
     T_FILE_NOT_FOUND = 'Error: File not found'
     T_ERROR_LINE = 'Error info:\n\tLine number: {}\n\tNear "{}".'
-    T_MISSING_EOF = 'Error: invalid end of file; missing EOF token.'
     T_INVLD_CHAR = 'Error: invalid character.'
     T_NOT_RESV = 'Error: token starts with lower case letter detected; but not a reserved word.'
     T_INT_LET = 'Error: token starts with digit but followed directly by a letter.'
