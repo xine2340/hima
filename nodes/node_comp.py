@@ -23,7 +23,7 @@ class CompNode:
     def __init__(self):
         self.fac_1 = FacNode()
         self.fac_2 = FacNode()
-        self.alt = False
+        self.alt = None
 
     def parse_comp(self, t: Tokenizer):
         """

@@ -2,6 +2,6 @@ program
 int X, Y;
 int Z;
 begin
-Z = Y*(X+Y);
+Z = 2;
 end
 ###END_OF_FILE###

@@ -25,7 +25,7 @@ class IfNode:
     def __init__(self):
         self.cond = CondNode()
         self.then_seq = nodes.node_stmt_seq.StmtSeqNode()
-        self.else_seq = False
+        self.else_seq = None
         self.alt = CONST.ALT_IF
 
     def parse_if(self, t: Tokenizer):

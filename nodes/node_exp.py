@@ -20,7 +20,7 @@ class ExpNode:
 
     def __init__(self):
         self.term = TermNode()
-        self.exp: ExpNode = False
+        self.exp = None
         self.alt = CONST.ALT_T
 
     def parse_exp(self, t: Tokenizer):

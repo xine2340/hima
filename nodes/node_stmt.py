@@ -27,7 +27,7 @@ class StmtNode:
 
     def __init__(self):
         self.sub_node = None
-        self.alt: int = None
+        self.alt = None
 
     def parse_stmt(self, t: Tokenizer):
         """

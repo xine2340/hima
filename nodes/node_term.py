@@ -17,8 +17,8 @@ class TermNode:
 
     def __init__(self):
         self.fac = FacNode()
-        self.term: TermNode = None
-        self.alt: int = None
+        self.term = None
+        self.alt = None
 
     def parse_term(self, t):
         """

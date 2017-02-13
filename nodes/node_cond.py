@@ -23,10 +23,10 @@ class CondNode:
     """
 
     def __init__(self):
-        self.alt: int = None
-        self.comp: CompNode = None
-        self.cond_1: CondNode = None
-        self.cond_2: CondNode = None
+        self.alt = None
+        self.comp = None
+        self.cond_1 = None
+        self.cond_2 = None
 
     def parse_cond(self, t: Tokenizer):
         """

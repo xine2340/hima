@@ -18,10 +18,10 @@ class FacNode:
     """
 
     def __init__(self):
-        self.int_val: int = None
-        self.id_node: IdNode = None
-        self.exp: nodes.node_exp.ExpNode = None
-        self.alt: int = None
+        self.int_val = None
+        self.id_node = None
+        self.exp = None
+        self.alt = None
 
     def parse_fac(self, t: Tokenizer):
         """
