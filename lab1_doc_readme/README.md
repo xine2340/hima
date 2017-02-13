@@ -5,8 +5,8 @@
 ## Files
 
 ### `utils.py`
-Helper methods and const strings. This file is created for POC,
-and maximizing re-usability & readability.
+Helper methods and const strings. This file is created for maximizing
+re-usability & readability.
 
 ### `lab1main.py`
 The main function of the lab, creating a `Tokenizer` instance and
@@ -19,8 +19,8 @@ The tokenizer class.
 The core program for testing.
 
 ### `README.md`
-The file you are looking at. *Please note that Dr. Morris permitted us to
-use `.md` or `.markdown` files for readme file and documentation.*
+The file you are looking at. *Please note that Dr. Morris permitted us
+to use `.md` or `.markdown` files for readme file and documentation.*
 
 ### `DOC_lab1.md`
 The documentation file for lab 1.

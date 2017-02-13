@@ -32,7 +32,7 @@ def print_i(str, indent, new_line=True):
     :param new_line: ending with new line
     """
     for i in range(0, indent):
-        print('\t', end='')
+        print('  ', end='')
     if new_line:
         print(str)
     else:
