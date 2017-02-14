@@ -56,3 +56,11 @@ class ERR_WARN_STR:
     T_BAD_EOF = 'Error: a token starts with "#" but is not EOF.'
     T_ID_LOW = 'Error: mixing upper and lower cases.'
     T_ID_NUM_LET = 'Error: bad identifier- letter after digits.'
+    LEN_LIMIT = 8
+    RX_INT_TOO_LONG = '[0-9]{{{},}}'.format(LEN_LIMIT)
+    RX_INT_LET = '[0-9]+[A-Za-z]'
+    RX_INT = '[0-9]+'
+    RX_ID_TOO_LONG = '[A-Z0-9]{{{},}}'.format(LEN_LIMIT)
+    RX_ID_NUM_LET = '[A-Z]+[0-9]+[A-Za-z]'
+    RX_ID_LOW = '[A-Z]+[0-9]*[a-z]'
+    RX_ID = '[A-Z]+[0-9]*'

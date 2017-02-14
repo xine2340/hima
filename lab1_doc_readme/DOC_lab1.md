@@ -20,7 +20,7 @@ Next token will be read, and the type of token will be decided once
     get the next token, read next line if current line contains no token,
     terminate and close file when EOF
     :handles errors:
-        1. no EOF token
+        1. EOF reached
         2. invalid char
 >
 
@@ -45,8 +45,7 @@ Next token will be read, and the type of token will be decided once
 >
     get a reserved word  
     :handles errors:
-        1. not in the reserved list  
-        2. bad identifier
+        1. not in the reserved list
     :return: a reserved word in @{reserved}
 >
 
@@ -77,8 +76,8 @@ Next token will be read, and the type of token will be decided once
     get an identifier  
     :handles errors:  
         1. longer than limit  
-        2. letter after letter  
-        3. uppercase  
+        2. letter after number
+        3. lowercase
     :return: an identifier
 >
 

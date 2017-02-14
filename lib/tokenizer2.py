@@ -1,5 +1,3 @@
-import re
-
 from lib.utils import ERR_WARN_STR
 
 
@@ -15,6 +13,7 @@ class Tokenizer:
     SYMBOLS = [';', ',', '!=', '[', ']', '(', ')', '+', '-', '*',
                '!', '==', '<=', '>=', '=', '>', '<']
     EOF = '###END_OF_FILE###'
+    LEN_LIMIT = 8
     T_RESV = 1
     T_SYM = 2
     T_ID = 3
@@ -34,7 +33,6 @@ class Tokenizer:
             exit()
         self.current_line = ''
         self.line_tokens = []
-        self.previous_token = ''
         self.current_token = ''
         self.error_line_num = 0
         self.token_type = 0
@@ -54,8 +52,8 @@ class Tokenizer:
         """
         print(error_str)
         trace_str = self.current_token
-        if self.previous_token != '':
-            trace_str = self.previous_token + ' ' + trace_str
+        if len(self.line_tokens) >= 1:
+            trace_str += ' ' + self.line_tokens[0]
         print(ERR_WARN_STR.T_ERROR_LINE.format(self.error_line_num, trace_str))
 
     def next_token(self):
@@ -104,13 +102,13 @@ class Tokenizer:
         get a reserved word
         :handles errors:
             1. not in the reserved list
+            2. bad identifier
         :return: a reserved word in @{reserved}
         """
         for res in self.RESERVED:
             if self.line_tokens[0].find(res) == 0:
                 if len(self.line_tokens[0]) > len(res) and self.line_tokens[0][len(res)].isalnum():
                     continue
-                self.previous_token = self.current_token
                 self.current_token = res
                 self.line_tokens[0] = self.line_tokens[0][len(res):]
                 self.token_type = self.T_RESV
@@ -127,7 +125,6 @@ class Tokenizer:
         """
         for symbol in self.SYMBOLS:
             if self.line_tokens[0].find(symbol) == 0:
-                self.previous_token = self.current_token
                 self.current_token = symbol
                 self.line_tokens[0] = self.line_tokens[0][len(symbol):]
                 self.token_type = self.T_SYM
@@ -141,26 +138,35 @@ class Tokenizer:
             2. followed directly by a letter
         :return: an int string
         """
+        end = (self.LEN_LIMIT, len(self.line_tokens[0]))[self.LEN_LIMIT > len(self.line_tokens[0])]
+        int_str = ""
+        current_char = ''
+        for i in range(0, end):
+            current_char = self.line_tokens[0][i]
+            if current_char.isdigit():
+                int_str += current_char
+            else:
+                break
 
-        if re.match(ERR_WARN_STR.RX_INT_TOO_LONG,  self.line_tokens[0]) is not None:
-            self.print_error(ERR_WARN_STR.T_INT_ID_TOO_LONG.format(self.LEN_LIMIT))
-            self.safe_exit()
-        elif re.match(ERR_WARN_STR.RX_INT_LET,  self.line_tokens[0]) is not None:
+        if current_char.isalpha():
             self.print_error(ERR_WARN_STR.T_INT_LET)
             self.safe_exit()
-        else:
-            self.previous_token = self.current_token
-            self.current_token = re.match(ERR_WARN_STR.RX_INT, self.line_tokens[0]).group(0)
-            self.line_tokens[0] = self.line_tokens[0][len(self.current_token):]
-            self.token_type = self.T_INT
-            return self.current_token
+        elif len(int_str) == self.LEN_LIMIT \
+                and len(self.line_tokens[0]) > self.LEN_LIMIT \
+                and self.line_tokens[0][self.LEN_LIMIT].isalnum():
+            self.print_error(ERR_WARN_STR.T_INT_ID_TOO_LONG.format(self.LEN_LIMIT))
+            self.safe_exit()
+
+        self.current_token = int_str
+        self.line_tokens[0] = self.line_tokens[0][len(int_str):]
+        self.token_type = self.T_INT
+        return int_str
 
     def next_eof(self):
         """
         get EOF token
         :return: EOF token
         """
-        self.previous_token = self.current_token
         self.current_token = self.EOF
         self.source.close()
         self.token_type = self.T_EOF
@@ -170,23 +176,37 @@ class Tokenizer:
         get an identifier
         :handles errors:
             1. longer than limit
-            2. letter after number
-            3. lowercase
+            2. letter after letter
+            3. uppercase
         :return: an identifier
         """
+        end = (self.LEN_LIMIT, len(self.line_tokens[0]))[self.LEN_LIMIT > len(self.line_tokens[0])]
+        id_str = ""
+        int_flag = True
+        current_char = ''
+        for i in range(0, end):
+            current_char = self.line_tokens[0][i]
+            if current_char.isupper() and int_flag:
+                id_str += current_char
+            elif current_char.isdigit():
+                int_flag = False
+                id_str += current_char
+            else:
+                break
 
-        if re.match(ERR_WARN_STR.RX_ID_TOO_LONG, self.line_tokens[0]) is not None:
-            self.print_error(ERR_WARN_STR.T_INT_ID_TOO_LONG.format(self.LEN_LIMIT))
-            self.safe_exit()
-        elif re.match(ERR_WARN_STR.RX_ID_NUM_LET, self.line_tokens[0]) is not None:
-            self.print_error(ERR_WARN_STR.T_ID_NUM_LET)
-            self.safe_exit()
-        elif re.match(ERR_WARN_STR.RX_ID_LOW, self.line_tokens[0]) is not None:
+        if current_char.islower():
             self.print_error(ERR_WARN_STR.T_ID_LOW)
             self.safe_exit()
-        else:
-            self.previous_token = self.current_token
-            self.current_token = re.match(ERR_WARN_STR.RX_ID, self.line_tokens[0]).group(0)
-            self.line_tokens[0] = self.line_tokens[0][len(self.current_token):]
-            self.token_type = self.T_ID
-            return self.current_token
+        elif current_char.isalpha() and not int_flag:
+            self.print_error(ERR_WARN_STR.T_ID_NUM_LET)
+            self.safe_exit()
+        elif len(id_str) == self.LEN_LIMIT \
+                and len(self.line_tokens[0]) > self.LEN_LIMIT \
+                and self.line_tokens[0][self.LEN_LIMIT].isalnum():
+            self.print_error(ERR_WARN_STR.T_INT_ID_TOO_LONG.format(self.LEN_LIMIT))
+            self.safe_exit()
+
+        self.current_token = id_str
+        self.line_tokens[0] = self.line_tokens[0][len(id_str):]
+        self.token_type = self.T_ID
+        return id_str
