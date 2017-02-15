@@ -47,7 +47,7 @@ class CondNode:
                 t.next_token()
                 self.alt = CONST.ALT_OR
             else:
-                t.print_error(utils.ERR_WARN_STR.P_MISSING_LOGIC_OP.format(CONST.NODE_NAME))
+                t.print_error(utils.UTL_STR.P_MISSING_LOGIC_OP.format(CONST.NODE_NAME))
                 t.safe_exit()
 
             self.cond_2.parse_cond(t)

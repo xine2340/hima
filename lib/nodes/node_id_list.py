@@ -33,7 +33,7 @@ class IdListNode:
             else:
                 id_node = IdNode.find_id(t.current_token)
                 if id_node is None:
-                    t.print_error(utils.ERR_WARN_STR.P_ID_NOT_DCL.format(t.current_token))
+                    t.print_error(utils.UTL_STR.P_ID_NOT_DCL.format(t.current_token))
                     t.safe_exit()
                 t.next_token()
             self.id_list.append(id_node)

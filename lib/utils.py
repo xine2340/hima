@@ -8,7 +8,7 @@ def check_token(t, expected, node_name):
     """
     token = t.current_token
     if token != expected:
-        t.print_error(ERR_WARN_STR.P_MISSING_RESV.format(expected, node_name))
+        t.print_error(UTL_STR.P_MISSING_RESV.format(expected, node_name))
         t.safe_exit()
     if t.token_type != t.T_EOF:
         t.next_token()
@@ -20,7 +20,7 @@ def check_id(t):
     :param t: tokenizer
     """
     if t.token_type != t.T_ID:
-        t.print_error(ERR_WARN_STR.P_ID_NOT_FND)
+        t.print_error(UTL_STR.P_ID_NOT_FND)
         t.safe_exit()
 
 
@@ -39,7 +39,7 @@ def print_i(str, indent, new_line=True):
         print(str, end='', flush=True)
 
 
-class ERR_WARN_STR:
+class UTL_STR:
     P_MISSING_RESV = 'Error: missing reserved word "{}" in {} node/statement.'
     P_MISSING_LOGIC_OP = 'Error: missing logic operator in {} node/statement.'
     P_INVLD_STMT = 'Error: invalid statement.'
@@ -57,10 +57,11 @@ class ERR_WARN_STR:
     T_ID_LOW = 'Error: mixing upper and lower cases.'
     T_ID_NUM_LET = 'Error: bad identifier- letter after digits.'
     LEN_LIMIT = 8
-    RX_INT_TOO_LONG = '[0-9]{{{},}}'.format(LEN_LIMIT)
+    RX_INT_TOO_LONG = '[0-9]{{{},}}'.format(LEN_LIMIT + 1)
     RX_INT_LET = '[0-9]+[A-Za-z]'
     RX_INT = '[0-9]+'
-    RX_ID_TOO_LONG = '[A-Z0-9]{{{},}}'.format(LEN_LIMIT)
+    RX_INT_FULL = '^[0-9]{{1,{}}}$'.format(LEN_LIMIT)
+    RX_ID_TOO_LONG = '[A-Z0-9]{{{},}}'.format(LEN_LIMIT + 1)
     RX_ID_NUM_LET = '[A-Z]+[0-9]+[A-Za-z]'
     RX_ID_LOW = '[A-Z]+[0-9]*[a-z]'
     RX_ID = '[A-Z]+[0-9]*'

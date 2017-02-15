@@ -3,9 +3,7 @@ import sys
 from lib.tokenizer import Tokenizer
 
 """
-Lab 1 main function
-usage: python3 lab1main.py input.core
-author: Xin Huang
+usage: python3 tokenizer_test.py input.core
 date: Jan 24, 2017
 """
 

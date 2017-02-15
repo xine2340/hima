@@ -29,7 +29,7 @@ class AssignNode:
         utils.check_id(t)
         self.id_node = IdNode.find_id(t.current_token)
         if self.id_node is None:
-            t.print_error(utils.ERR_WARN_STR.P_ID_NOT_DCL.format(t.current_token))
+            t.print_error(utils.UTL_STR.P_ID_NOT_DCL.format(t.current_token))
             t.safe_exit()
         t.next_token()
         utils.check_token(t, CONST.EQUAL, CONST.NODE_NAME)

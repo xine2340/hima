@@ -3,7 +3,7 @@ int X, Y;
 int Z;
 begin
 X=8;
-Y=3;
+read Y;
 if (X>Y) then
 write X;
 else
@@ -13,5 +13,6 @@ Z=2;
 while (Z<=X) loop
 Z = Z*2;
 end;
+Z = Z * (X+Y);
 write Z;
 end

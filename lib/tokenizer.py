@@ -1,6 +1,6 @@
 import re
 
-from lib.utils import ERR_WARN_STR
+from lib.utils import UTL_STR
 
 
 class Tokenizer:
@@ -30,7 +30,7 @@ class Tokenizer:
         try:
             self.source = open(source_file, 'r')
         except FileNotFoundError:
-            print(ERR_WARN_STR.T_FILE_NOT_FOUND)
+            print(UTL_STR.T_FILE_NOT_FOUND)
             exit()
         self.current_line = ''
         self.line_tokens = []
@@ -56,7 +56,7 @@ class Tokenizer:
         trace_str = self.current_token
         if self.previous_token != '':
             trace_str = self.previous_token + ' ' + trace_str
-        print(ERR_WARN_STR.T_ERROR_LINE.format(self.error_line_num, trace_str))
+        print(UTL_STR.T_ERROR_LINE.format(self.error_line_num, trace_str))
 
     def next_token(self):
         """
@@ -69,7 +69,7 @@ class Tokenizer:
 
         # skip if EOF
         if self.token_type == self.T_EOF:
-            print(ERR_WARN_STR.T_REACH_EOF)
+            print(UTL_STR.T_REACH_EOF)
             return None
 
         while len(self.line_tokens) == 0 or len(self.line_tokens[0]) == 0:
@@ -96,7 +96,7 @@ class Tokenizer:
         elif self.line_tokens[0][0] in self.SYMBOLS:
             self.next_symbol()
         else:
-            self.print_error(ERR_WARN_STR.T_INVLD_CHAR)
+            self.print_error(UTL_STR.T_INVLD_CHAR)
             self.safe_exit()
 
     def next_reserved(self):
@@ -116,7 +116,7 @@ class Tokenizer:
                 self.token_type = self.T_RESV
                 return res
 
-        self.print_error(ERR_WARN_STR.T_NOT_RESV)
+        self.print_error(UTL_STR.T_NOT_RESV)
         self.safe_exit()
 
     def next_symbol(self):
@@ -142,15 +142,15 @@ class Tokenizer:
         :return: an int string
         """
 
-        if re.match(ERR_WARN_STR.RX_INT_TOO_LONG,  self.line_tokens[0]) is not None:
-            self.print_error(ERR_WARN_STR.T_INT_ID_TOO_LONG.format(self.LEN_LIMIT))
+        if re.match(UTL_STR.RX_INT_TOO_LONG, self.line_tokens[0]) is not None:
+            self.print_error(UTL_STR.T_INT_ID_TOO_LONG.format(self.LEN_LIMIT))
             self.safe_exit()
-        elif re.match(ERR_WARN_STR.RX_INT_LET,  self.line_tokens[0]) is not None:
-            self.print_error(ERR_WARN_STR.T_INT_LET)
+        elif re.match(UTL_STR.RX_INT_LET, self.line_tokens[0]) is not None:
+            self.print_error(UTL_STR.T_INT_LET)
             self.safe_exit()
         else:
             self.previous_token = self.current_token
-            self.current_token = re.match(ERR_WARN_STR.RX_INT, self.line_tokens[0]).group(0)
+            self.current_token = re.match(UTL_STR.RX_INT, self.line_tokens[0]).group(0)
             self.line_tokens[0] = self.line_tokens[0][len(self.current_token):]
             self.token_type = self.T_INT
             return self.current_token
@@ -175,18 +175,18 @@ class Tokenizer:
         :return: an identifier
         """
 
-        if re.match(ERR_WARN_STR.RX_ID_TOO_LONG, self.line_tokens[0]) is not None:
-            self.print_error(ERR_WARN_STR.T_INT_ID_TOO_LONG.format(self.LEN_LIMIT))
+        if re.match(UTL_STR.RX_ID_TOO_LONG, self.line_tokens[0]) is not None:
+            self.print_error(UTL_STR.T_INT_ID_TOO_LONG.format(self.LEN_LIMIT))
             self.safe_exit()
-        elif re.match(ERR_WARN_STR.RX_ID_NUM_LET, self.line_tokens[0]) is not None:
-            self.print_error(ERR_WARN_STR.T_ID_NUM_LET)
+        elif re.match(UTL_STR.RX_ID_NUM_LET, self.line_tokens[0]) is not None:
+            self.print_error(UTL_STR.T_ID_NUM_LET)
             self.safe_exit()
-        elif re.match(ERR_WARN_STR.RX_ID_LOW, self.line_tokens[0]) is not None:
-            self.print_error(ERR_WARN_STR.T_ID_LOW)
+        elif re.match(UTL_STR.RX_ID_LOW, self.line_tokens[0]) is not None:
+            self.print_error(UTL_STR.T_ID_LOW)
             self.safe_exit()
         else:
             self.previous_token = self.current_token
-            self.current_token = re.match(ERR_WARN_STR.RX_ID, self.line_tokens[0]).group(0)
+            self.current_token = re.match(UTL_STR.RX_ID, self.line_tokens[0]).group(0)
             self.line_tokens[0] = self.line_tokens[0][len(self.current_token):]
             self.token_type = self.T_ID
             return self.current_token

@@ -39,11 +39,12 @@ class FacNode:
             t.next_token()
         elif t.current_token == '(':
             t.next_token()
+            self.alt = CONST.ALT_EXP
             self.exp = lib.nodes.node_exp.ExpNode()
             self.exp.parse_exp(t)
             utils.check_token(t, ')', CONST.NODE_NAME)
         else:
-            t.print_error(utils.ERR_WARN_STR.P_INVLD_FAC.format(t.current_token))
+            t.print_error(utils.UTL_STR.P_INVLD_FAC.format(t.current_token))
             t.safe_exit()
 
     def print_fac(self):

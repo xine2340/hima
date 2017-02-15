@@ -36,7 +36,7 @@ class CompNode:
             self.alt = t.current_token
             t.next_token()
         else:
-            t.print_error(utils.ERR_WARN_STR.P_MISSING_LOGIC_OP.format(CONST.NODE_NAME))
+            t.print_error(utils.UTL_STR.P_MISSING_LOGIC_OP.format(CONST.NODE_NAME))
             t.safe_exit()
         self.fac_2.parse_fac(t)
         utils.check_token(t, ')', CONST.NODE_NAME)

@@ -1,11 +1,10 @@
+from lib import utils
 from lib.nodes.node_assign import AssignNode
 from lib.nodes.node_if import IfNode
-from lib.nodes.node_out import OutNode
-
-from lib import utils
+from lib.nodes.node_in import InNode
 from lib.nodes.node_loop import LoopNode
+from lib.nodes.node_out import OutNode
 from lib.tokenizer import Tokenizer
-from node_in import InNode
 
 
 class CONST:
@@ -56,7 +55,7 @@ class StmtNode:
             self.sub_node = OutNode()
             self.sub_node.parse_out(t)
         else:
-            t.print_error(utils.ERR_WARN_STR.P_INVLD_STMT)
+            t.print_error(utils.UTL_STR.P_INVLD_STMT)
             t.safe_exit()
 
     def print_stmt(self, i):

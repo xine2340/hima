@@ -30,6 +30,11 @@ class IdNode:
 
     @staticmethod
     def find_id(name):
+        """
+        find the id in the symbol table
+        :param name: id name
+        :return: id or none
+        """
         if name in IdNode.idTable:
             return IdNode.idTable[name]
         else:
