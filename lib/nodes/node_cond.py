@@ -36,9 +36,11 @@ class CondNode:
         if t.current_token == CONST.NOT:
             t.next_token()
             self.alt = CONST.ALT_NOT
+            self.cond_1 = CondNode()
             self.cond_1.parse_cond(t)
         elif t.current_token == '[':
             t.next_token()
+            self.cond_1 = CondNode()
             self.cond_1.parse_cond(t)
             if t.current_token == CONST.AND:
                 t.next_token()
@@ -49,7 +51,7 @@ class CondNode:
             else:
                 t.print_error(utils.UTL_STR.P_MISSING_LOGIC_OP.format(CONST.NODE_NAME))
                 t.safe_exit()
-
+            self.cond_2 = CondNode()
             self.cond_2.parse_cond(t)
             utils.check_token(t, ']', CONST.NODE_NAME)
         else:

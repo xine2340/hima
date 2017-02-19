@@ -50,7 +50,7 @@ class ExpNode:
             self.exp.print_exp()
         elif self.alt == CONST.ALT_TME:
             utils.print_i(' ' + CONST.MINUS + ' ', 0, False)
-            self.print_exp()
+            self.exp.print_exp()
 
     def eval_exp(self):
         """

@@ -2,17 +2,24 @@ program
 int X, Y;
 int Z;
 begin
-X=8;
-read Y;
-if (X>Y) then
+read X;
+if (X < 25) then
+Y = 25;
 write X;
 else
-write Y;
+X = X + 10;
 end;
-Z=2;
-while (Z<=X) loop
-Z = Z*2;
+while !(X == 20) loop
+X = X + Y;
+Y = 10;
+read Y;
 end;
-Z = Z * (X+Y);
-write Z;
+Y = X + 5 + 03 - Y + (X * (X - 1000) );
+if [(5 <= (X + Y)) and ![ (X == Y) or (Y >= X)]] then
+if (X > 25) then
+while (X != 20) loop
+read X;
+end;
+end;
+end;
 end
