@@ -56,7 +56,9 @@ class Tokenizer:
         trace_str = self.current_token
         if self.previous_token != '':
             trace_str = self.previous_token + ' ' + trace_str
-        print(UTL_STR.T_ERROR_LINE.format(self.error_line_num, trace_str))
+        elif len(self.line_tokens) > 0:
+            trace_str = trace_str + ' ' + self.line_tokens[0]
+        print(UTL_STR.T_ERROR_LINE.format(self.error_line_num, trace_str.strip()))
 
     def next_token(self):
         """
@@ -143,7 +145,7 @@ class Tokenizer:
         """
 
         if re.match(UTL_STR.RX_INT_TOO_LONG, self.line_tokens[0]) is not None:
-            self.print_error(UTL_STR.T_INT_ID_TOO_LONG.format(self.LEN_LIMIT))
+            self.print_error(UTL_STR.T_INT_ID_TOO_LONG.format(UTL_STR.LEN_LIMIT))
             self.safe_exit()
         elif re.match(UTL_STR.RX_INT_LET, self.line_tokens[0]) is not None:
             self.print_error(UTL_STR.T_INT_LET)
@@ -176,7 +178,7 @@ class Tokenizer:
         """
 
         if re.match(UTL_STR.RX_ID_TOO_LONG, self.line_tokens[0]) is not None:
-            self.print_error(UTL_STR.T_INT_ID_TOO_LONG.format(self.LEN_LIMIT))
+            self.print_error(UTL_STR.T_INT_ID_TOO_LONG.format(UTL_STR.LEN_LIMIT))
             self.safe_exit()
         elif re.match(UTL_STR.RX_ID_NUM_LET, self.line_tokens[0]) is not None:
             self.print_error(UTL_STR.T_ID_NUM_LET)
