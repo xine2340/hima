@@ -45,7 +45,7 @@ INT_num = 31
 ID_num = 32
 
 if len(sys.argv) == 1:
-    print("Please input file name.")
+    print("Please enter input file name.")
     exit()
 
 t = Tokenizer(sys.argv[1])
