@@ -56,7 +56,7 @@ class Tokenizer:
         trace_str = self.current_token
         if self.previous_token != '':
             trace_str = self.previous_token + ' ' + trace_str
-        elif len(self.line_tokens) > 0:
+        if len(self.line_tokens) > 0:
             trace_str = trace_str + ' ' + self.line_tokens[0]
         print(UTL_STR.T_ERROR_LINE.format(self.error_line_num, trace_str.strip()))
 
