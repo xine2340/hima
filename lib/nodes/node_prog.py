@@ -32,7 +32,7 @@ class ProgNode:
         utils.check_token(t, CONST.BEGIN, CONST.NODE_NAME)
         self.stmt_seq.parse_stmt_seq(t)
         utils.check_token(t, CONST.END, CONST.NODE_NAME)
-        # utils.check_token(t, t.EOF, CONST.END)
+        utils.check_eof(t)
 
     def print_program(self):
         """

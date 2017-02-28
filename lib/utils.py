@@ -24,19 +24,29 @@ def check_id(t):
         t.safe_exit()
 
 
-def print_i(str, indent, new_line=True):
+def check_eof(t):
+    """
+    check if current token is EOF
+    :param t: tokenizer
+    """
+    if t.token_type != t.T_EOF:
+        t.print_error(UTL_STR.P_NOT_EOF)
+        t.safe_exit()
+
+
+def print_i(s, indent, new_line=True):
     """
     print string with specified indentation
-    :param str: string to print
+    :param s: string to print
     :param indent: number of tabs
     :param new_line: ending with new line
     """
     for i in range(0, indent):
         print('  ', end='')
     if new_line:
-        print(str)
+        print(s)
     else:
-        print(str, end='', flush=True)
+        print(s, end='', flush=True)
 
 
 class UTL_STR:
@@ -46,6 +56,7 @@ class UTL_STR:
     P_INVLD_FAC = 'Error: "{}" is not a valid factor. '
     P_ID_NOT_FND = 'Error: an identifier expected but not found.'
     P_ID_NOT_DCL = 'Error: identifier "{}" is not declared.'
+    P_NOT_EOF = 'Error: tokens after final end.'
     T_REACH_EOF = 'Reached end of file.'
     T_FILE_NOT_FOUND = 'Error: File not found'
     T_ERROR_LINE = 'Error info:\n\tLine number: {}\n\tNear "{}".'

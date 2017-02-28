@@ -3,10 +3,14 @@
 **Email:** huang.2340@osu.edu
 
 ## Execution
-Assume the python 3 executable is named `python3`. Use `python3 lab2main
-test.core` to execute the program.
+Assume the python 3 executable is named `python3`. Use `python3
+lab2main.py test.core` to execute the program.
 
 ## Files
+
+### `node_*.py`
+The classes for the syntax tree nodes, following the object-oriented
+implementation guideline in class.
 
 ### `utils.py`
 Helper methods and const strings. This file is created for maximizing
@@ -17,10 +21,6 @@ The main function of the lab, parse the core program and pretty print.
 
 ### `tokenizer.py`
 The tokenizer class.
-
-### `node_*.py`
-The classes for the syntax tree nodes, following the object-oriented
-implementation guideline in class.
 
 ### `README.md`
 The file you are looking at. *Please note that Dr. Morris permitted us
