@@ -50,12 +50,15 @@ def print_i(s, indent, new_line=True):
 
 
 class UTL_STR:
-    P_MISSING_RESV = 'Error: missing reserved word "{}" in {} node/statement.'
+    R_ID_NOT_INIT = 'Error: identifier "{}" is not initialized.'
+    R_OUT_BOUND = 'Error: the absolute value is too large in the expression:'
+    P_MISSING_RESV = 'Error: reserved word "{}" expected in {} node/statement.'
     P_MISSING_LOGIC_OP = 'Error: missing logic operator in {} node/statement.'
     P_INVLD_STMT = 'Error: invalid statement.'
     P_INVLD_FAC = 'Error: "{}" is not a valid factor. '
     P_ID_NOT_FND = 'Error: an identifier expected but not found.'
     P_ID_NOT_DCL = 'Error: identifier "{}" is not declared.'
+    P_ID_DUP_DCL = 'Error: duplicated declaration of "{}".'
     P_NOT_EOF = 'Error: tokens after final end.'
     T_REACH_EOF = 'Reached end of file.'
     T_FILE_NOT_FOUND = 'Error: File not found'
@@ -68,6 +71,7 @@ class UTL_STR:
     T_ID_LOW = 'Error: mixing upper and lower cases.'
     T_ID_NUM_LET = 'Error: bad identifier- letter after digits.'
     LEN_LIMIT = 8
+    MAX_INT = 10**LEN_LIMIT - 1
     RX_INT_TOO_LONG = '[0-9]{{{},}}'.format(LEN_LIMIT + 1)
     RX_INT_LET = '[0-9]+[A-Za-z]'
     RX_INT = '[0-9]+'

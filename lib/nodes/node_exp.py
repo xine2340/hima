@@ -62,4 +62,10 @@ class ExpNode:
             value += self.exp.eval_exp()
         elif self.alt == CONST.ALT_TME:
             value -= self.exp.eval_exp()
+
+        if abs(value) > utils.UTL_STR.MAX_INT:
+            print(utils.UTL_STR.R_OUT_BOUND)
+            self.print_exp()
+            exit()
+
         return value

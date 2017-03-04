@@ -68,6 +68,6 @@ class FacNode:
         if self.alt == CONST.ALT_INT:
             return self.int_val
         elif self.alt == CONST.ALT_ID:
-            return self.id_node.value
+            return self.id_node.eval_id()
         elif self.alt == CONST.ALT_EXP:
             return self.exp.eval_exp()

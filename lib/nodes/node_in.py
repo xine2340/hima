@@ -8,6 +8,7 @@ class CONST:
     NODE_NAME = 'input'
     IN = 'read'
     SC = ';'
+    PROMPT = '{} =? '
 
 
 class InNode:
@@ -26,6 +27,7 @@ class InNode:
         :param t: tokenizer
         """
         utils.check_token(t, CONST.IN, CONST.NODE_NAME)
+        utils.check_id(t)
         self.id_list.parse_id_list(t)
         utils.check_token(t, CONST.SC, CONST.NODE_NAME)
 
@@ -43,7 +45,7 @@ class InNode:
         execute the input statement
         """
         for i in self.id_list.id_list:
-            v = input('Enter the value for {}: '.format(i.name))
+            v = input(CONST.PROMPT.format(i.name))
             while re.match(utils.UTL_STR.RX_INT_FULL, v) is None:
                 v = input('Enter a valid value for {}: '.format(i.name))
             i.value = int(re.match(utils.UTL_STR.RX_INT_FULL, v).group(0))

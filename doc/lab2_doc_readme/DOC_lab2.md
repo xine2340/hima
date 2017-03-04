@@ -27,14 +27,17 @@ All test cases passed; no outstanding bug found.
 We used the test cases provided on carmen to test the tokenizer and
 parser.
 We also tested using the following case
+
 0. missing end
 0. missing ;
 0. missing )
 0. missing then
 0. missing ID
-0. duplicated reserved words
+0. duplicated reserved words (allow duplicated !-"not"; disallow ";;" )
 0. mismatched reserved words
 0. nested if/while
 0. junk after final end
 0. undeclared variable
 0. complicated cond/expr
+0. multiple decl-seq (please note that we allow declare the same
+variable for more than once)

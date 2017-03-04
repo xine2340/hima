@@ -25,6 +25,7 @@ class DeclNode:
         """
         if t.current_token in CONST.TYPES:
             t.next_token()
+        utils.check_id(t)
         self.id_list.parse_id_list(t, True)
         utils.check_token(t, CONST.SC, CONST.NODE_NAME)
 

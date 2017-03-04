@@ -10,13 +10,13 @@ class IdNode:
     idTable = dict()
 
     def __init__(self, name):
-        self.value = 0
+        self.value = None
         self.name = name
 
     @staticmethod
     def parse_id(t: Tokenizer):
         """
-        parse current id and return the instance
+        parse current id (in decl-seq) and return the instance
         :param t: tokenizer
         :return: an IdNode instance
         """
@@ -26,6 +26,9 @@ class IdNode:
         if token not in IdNode.idTable:
             id_node = IdNode(token)
             IdNode.idTable[token] = id_node
+        else:
+            t.print_error(utils.UTL_STR.P_ID_DUP_DCL.format(token))
+            t.safe_exit()
         return IdNode.idTable[token]
 
     @staticmethod
@@ -39,3 +42,13 @@ class IdNode:
             return IdNode.idTable[name]
         else:
             return None
+
+    def eval_id(self):
+        """
+        :return: value of the id
+        """
+        if self.value is None:
+            print(utils.UTL_STR.R_ID_NOT_INIT.format(self.name))
+            exit()
+        else:
+            return self.value

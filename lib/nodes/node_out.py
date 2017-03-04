@@ -7,6 +7,7 @@ class CONST:
     NODE_NAME = 'out'
     OUT = 'write'
     SC = ';'
+    PROMPT = '{} = {}'
 
 
 class OutNode:
@@ -41,4 +42,4 @@ class OutNode:
         execute the output statement
         """
         for id_node in self.id_list.id_list:
-            print(id_node.name + ' is ' + str(id_node.value))
+            print(CONST.PROMPT.format(id_node.name, id_node.eval_id()))

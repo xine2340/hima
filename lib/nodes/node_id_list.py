@@ -28,6 +28,7 @@ class IdListNode:
                 first = False
             else:
                 t.next_token()
+
             if decl:
                 id_node = IdNode.parse_id(t)
             else:
