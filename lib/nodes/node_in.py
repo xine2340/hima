@@ -9,6 +9,8 @@ class CONST:
     IN = 'read'
     SC = ';'
     PROMPT = '{} =? '
+    INV_VAL = 'Enter a valid value for {{}} (Non-negative integer with length less than {}): '.format(
+        utils.UTL_STR.LEN_LIMIT)
 
 
 class InNode:
@@ -47,5 +49,5 @@ class InNode:
         for i in self.id_list.id_list:
             v = input(CONST.PROMPT.format(i.name))
             while re.match(utils.UTL_STR.RX_INT_FULL, v) is None:
-                v = input('Enter a valid value for {}: '.format(i.name))
+                v = input(CONST.INV_VAL.format(i.name))
             i.value = int(re.match(utils.UTL_STR.RX_INT_FULL, v).group(0))
